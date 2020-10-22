@@ -1,0 +1,9 @@
+/* app.css */
+
+@import "tailwindcss/base";
+
+/* Include other files */
+@import "./site.css";
+
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";

@@ -1,0 +1,10 @@
+/* site.css */
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* alpine stuff */
+[x-cloak] {
+    display: none;
+}
