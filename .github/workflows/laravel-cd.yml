@@ -38,12 +38,12 @@ jobs:
       run: vendor/bin/phpunit
     - name: Extract branch name
       shell: bash
-      run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+      run: echo "##[set-output name=BRANCH_NAME;]$(echo ${GITHUB_REF#refs/heads/})"
       id: extract_branch
 
     - name: Publish assets with Lasso
       env:
-        LASSO_ENV: ${{ BRANCH_NAME }}
+        LASSO_ENV: ${BRANCH_NAME}
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
