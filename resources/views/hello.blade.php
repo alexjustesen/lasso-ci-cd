@@ -26,11 +26,12 @@
 
             <div class="p-4 pt-12 sm:p-6 lg:p-8">
                 <article class="prose prose-sm max-w-none lg:prose-xl">
-                    <h1 id="home">CI/CD Pipeline with GitHub Actions and Lasso</h1>
+                    <h1 id="home">Laravel CI/CD Pipeline with GitHub Actions and Lasso</h1>
 
                     <p>
-                        Let's go over how I use GitHub Actions with <a href="https://getlasso.dev" target="_blank" rel="noopener">Lasso</a> from <a href="https://github.com/Sammyjo20" target="_blank" rel="noopener">Sam Carré</a>
-                        to take compiled Webpack assets out of Github and upload them to any S3 compliant cloud storage provider.
+                        This guide will walk you though how I use GitHub Actions to create a CI/CD pipeline for <a href="https://laravel.com" target="_blank" rel="noopener">Laravel</a> applications. We'll use
+                        <a href="https://getlasso.dev" target="_blank" rel="noopener">Lasso</a> from <a href="https://github.com/Sammyjo20" target="_blank" rel="noopener">Sam Carré</a> to compile Webpack
+                        assets and upload them to a S3 storage provider and then trigger a deployment using the workflow.
                     </p>
 
                     <blockquote>
