@@ -4,6 +4,16 @@ html {
     scroll-behavior: smooth;
 }
 
+[id] {
+    scroll-margin-top: 24rem;
+}
+
+@media (min-width: 1024px) {
+    [id] {
+        scroll-margin-top: 32rem;
+    }
+}
+
 /* alpine stuff */
 [x-cloak] {
     display: none;
