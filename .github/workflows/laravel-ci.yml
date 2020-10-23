@@ -1,11 +1,11 @@
-name: Develop PR
+name: Laravel CI
 
 on:
   pull_request:
-    branches: [ develop ]
+    branches: [ develop, main ]
 
 jobs:
-  develop-pr-tests:
+  laravel-ci:
     runs-on: ubuntu-latest
 
     steps:

@@ -1,11 +1,11 @@
-name: Develop Push
+name: Laravel CD
 
 on:
   push:
-    branches: [ develop ]
+    branches: [ develop, main ]
 
 jobs:
-  develop-ci:
+  laravel-cd:
     runs-on: ubuntu-latest
 
     steps:
@@ -39,7 +39,7 @@ jobs:
 
     - name: Publish assets with Lasso
       env:
-        LASSO_ENV: develop
+        LASSO_ENV: ${{ github.ref }}
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
