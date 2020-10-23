@@ -48,4 +48,4 @@ jobs:
       run: php artisan lasso:publish --no-git
 
     - name: Trigger ploi.io deployment
-      run: curl -X POST ${{ secrets.PLOI_DEVELOP_DEPLOYMENT_WEBHOOK }}?token=${{ secrets.PLOI_DEVELOP_DEPLOYMENT_TOKEN }}
+      run: curl -X POST ${{ secrets.PLOI_DEPLOYMENT_WEBHOOK }}
