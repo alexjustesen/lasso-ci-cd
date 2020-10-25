@@ -152,7 +152,7 @@
 
                     <h2 id="github-actions">GitHub Actions</h2>
                     <p>
-                        To get us started we're going to create and run two workflows, one to do our testing (CI) and one to do our ploying (CD).
+                        To get us started we're going to create and run two workflows, one to do our testing (CI) and one to do our deploying (CD).
                         These workflows are based on the <a href="https://github.com/actions/starter-workflows/blob/48d91f58fdbd01a65b0e1e4dcc0eda76d3540536/ci/laravel.yml" target="_blank" rel="noopener">Laravel</a> actions starter workflows.
                     </p>
 
@@ -259,7 +259,7 @@
                     <h3>Bonus</h3>
                     <p>
                         I use <a href="https://ploi.io/register?referrer=Q6l9H3OiyYW58yEcwjy8">Ploi.io</a> <em>(referral link)</em> to host my Laravel applications.
-                        Check out Ploi's docs to see how you can trigger a deployment and reference the step called <code>Trigger ploi.io deployment</code> in <code>.github/workflows/develop.yml</code>.
+                        Check out Ploi's docs to see how you can trigger a deployment and reference the step called <code>Trigger ploi.io deployment</code> in <code>.github/workflows/laravel-cd.yml</code>.
                     </p>
 
                     <blockquote>
