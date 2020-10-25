@@ -15,5 +15,5 @@ class Application {
      *
      * @string
      */
-    const DATE = '2020-10-22';
+    const DATE = '2020-10-25';
 }
