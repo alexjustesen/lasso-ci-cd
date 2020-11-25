@@ -119,6 +119,12 @@ jobs:
 
       - name: Download all workflow run artifacts
         uses: actions/download-artifact@v2
+        with:
+          name: 'npm-assets'
+          path: public
+
+      - name: 'Echo download path'
+        run: echo ${{steps.download.outputs.download-path}}
 
       - name: Test with phpunit
         run: vendor/bin/phpunit --coverage-text
