@@ -17,11 +17,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Extract branch name
-        shell: bash
-        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
-        id: extract_branch
-
       - name: Get npm cache directory
         id: npm-cache
         run: echo "::set-output name=dir::$(npm config get cache)"
@@ -44,13 +39,12 @@ jobs:
       - name: Archive NPM artifacts
         uses: actions/upload-artifact@v2
         with:
-          name: ${{ steps.extract_branch.outputs.branch }}-npm-assets
+          name: npm-assets
           path: |
             public/mix-manifest.json
             public/css/**/*
             public/js/**/*
             public/img/**/*
-          retention-days: 7
 
   test-app:
     name: Test Laravel (PHP ${{ matrix.php-versions }} on ${{ matrix.operating-system }})
