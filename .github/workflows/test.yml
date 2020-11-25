@@ -123,10 +123,7 @@ jobs:
           name: 'npm-assets'
           path: public
 
-      - name: 'Echo download path'
-        run: echo ${{steps.download.outputs.download-path}}
-
-      - name: Test with phpunit
+      - name: Test with phpunit including coverage
         run: vendor/bin/phpunit --coverage-text
         env:
           DB_PORT: ${{ job.services.mysql.ports['3306'] }}
