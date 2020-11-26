@@ -84,5 +84,8 @@ jobs:
           AWS_BUCKET: ${{ secrets.AWS_BUCKET }}
           AWS_ENDPOINT: ${{ secrets.AWS_ENDPOINT }}
 
-      - name: Trigger ploi.io deployment
+      - name: Trigger 'develop' branch ploi.io deployment
         run: curl -X POST ${{ secrets.PLOI_DEVELOP_DEPLOYMENT_WEBHOOK }}?token=${{ secrets.PLOI_DEVELOP_DEPLOYMENT_TOKEN }}
+
+      - name: Trigger 'main' branch ploi.io deployment
+        run: curl -X POST ${{ secrets.PLOI_MAIN_DEPLOYMENT_WEBHOOK }}?token=${{ secrets.PLOI_MAIN_DEPLOYMENT_TOKEN }}
