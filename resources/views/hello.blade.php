@@ -45,7 +45,7 @@
                     <h1 id="home">Laravel CI/CD Pipeline with GitHub Actions and Lasso</h1>
 
                     <div class="flex items-center space-x-4">
-                        <a href="https://ko-fi.com/S6S12TS60" target="_blank" rel="nofollow">
+                        <a href="https://ko-fi.com/S6S12TS60" target="_blank" rel="noopener">
                             <img src="https://cdn.ko-fi.com/cdn/kofi3.png?v=2" class="border-none h-8" style="margin: 0;" alt="Buy Me a Coffee at ko-fi.com">
                         </a>
                     </div>
@@ -87,7 +87,7 @@
                         <li>
                             You compile your assets using <a href="https://laravel.com/docs/8.x/mix#introduction" target="_blank" rel="noopener">Laravel Mix</a> and they get published into the default <code>/public</code> directory.
                             <ul>
-                                <li>For this example I'm using <a href="https://tailwind.css" target="_blank" rel="noopener">Tailwind CSS</a> and <a href="https://github.com/alpinejs/alpine/" target="_blank" rel="noopener">Alpine.js</a>.</li>
+                                <li>For this example I'm using <a href="https://tailwind.css" target="_blank" rel="noopener">Tailwind CSS</a> and <a href="https://github.com/alpinejs/alpine/" target="_blank" rel="noopener">AlpineJS</a>.</li>
                             </ul>
                         </li>
                     </ul>
@@ -100,7 +100,7 @@
                     <img src="https://wac-cdn.atlassian.com/dam/jcr:a9cea7b7-23c3-41a7-a4e0-affa053d9ea7/04%20(1).svg?cdnVersion=1315" alt="">
 
                     <blockquote>
-                        <p>Image source: <a href="https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow" target="_blank" rel="noopener">https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow</a></p>
+                        <p>Source: <a href="https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow" target="_blank" rel="noopener">https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow</a></p>
                     </blockquote>
 
                     <h3>Process</h3>
@@ -110,15 +110,10 @@
 
                     <ol>
                         <li>Create a new branch off <code>develop</code> to do your work in.</li>
-                        <li>Create a pull request to bring those changes into the develop branch.</li>
-                        <li>On the PR to <code>develop</code> run our tests and only allow a merge to occur if tests pass.</li>
-                        <li>When successfully merged into <code>develop</code> run the tests again, compile and upload the assets using Lasso and deploy the code.
-                            <ul>
-                                <li>As a bonus we're doing to deploy code in both our <code>main</code> and <code>develop</code> branches.</li>
-                            </ul>
-                        </li>
-                        <li>Once you have enough code in <code>develop</code> for a release open a PR our <code>main</code> branch.</li>
-                        <li>When successfully merged into <code>main</code> run the tests again, compile and upload the assets using Lasso and deploy the code.</li>
+                        <li>Create a pull request (PR) to bring those changes into the develop branch.</li>
+                        <li>On the creation of the PR into our <code>develop</code> branch run our builds and tests.</li>
+                        <li>When merged into <code>develop</code> run a workflow to compile and upload the assets to an S3 bucket using Lasso and deploy the code.</li>
+                        <li>Once you have enough code in <code>develop</code> for a release, open a PR into the <code>main</code> branch and we'll repeat steps 3 and 4 for production.</li>
                     </ol>
 
                     <h2 id="configuring">Configuring</h2>
@@ -135,52 +130,56 @@
 
                     <h3>Configuring Laravel</h3>
                     <p>
-                        Next we need to update Laravel's <code>.env</code> files with additional S3 driver options and the Lasso environment.
+                        Next we need to update Laravel's <code>.env</code> file with additional S3 driver options and the Lasso environment.
+                        (<a href="https://github.com/alexjustesen/lasso-ci-cd/blob/develop/.env.example" target="_blank" rel="noopener">Example</a>)
                     </p>
 
                     <ul>
-                        <li>Add <code>AWS_ENDPOINT=</code> after <code>AWS_BUCKET</code> in both the <code>.env</code> and <code>.env-example</code>.</li>
-                        <li>Add <code>LASSO_ENV=</code> to <code>.env</code> and <code>.env-example</code>.</li>
+                        <li>Add <code>AWS_ENDPOINT=</code> after <code>AWS_BUCKET</code>.</li>
+                        <li>Add <code>LASSO_ENV=</code> after <code>APP_</code> variables.</li>
                     </ul>
 
                     <h3>Configuring Lasso</h3>
                     <p>
-                        Next let's get Lasso configured, for a full explaination of the settings go to the <a href="https://github.com/Sammyjo20/Lasso#configuration" target="_blank" rel="noopener">readme</a>.
+                        Next let's get Lasso configured, for a full explaination of the settings go to the <a href="https://github.com/Sammyjo20/Lasso#configuration" target="_blank" rel="noopener">readme</a> .
                     </p>
 
-                    <ul>
+                    <ol>
                         <li>Publish Lasso's config file <code>php artisan vendor:publish --tag=lasso-config</code>.</li>
-                        <li>In <code>config/lasso.php</code> change <code>'disk' => 'assets'</code> to <code>'disk' => 's3'</code> to use the Amazon S3 drivers.</li>
+                        <li>In <code>config/lasso.php</code> change <code>'disk' => 'assets'</code> to <code>'disk' => 's3'</code> to use the S3 drivers.</li>
                         <li>
                             Optional, change <code>upload_to</code> if you plan on using the same bucket for multiple sites.
                             You'll notice in this repository I've set it to <code>lasso_ci_cd/lasso</code>.
                         </li>
-                    </ul>
+                    </ol>
 
                     <h3>Configure .gitignore</h3>
-                    <p>Since the whole point of this is to no longer commit our assets to GitHub we need to update our <code>.gitignore</code> file as well.</p>
+                    <p>
+                        Since the whole point of this is to automate our deployments and no longer commit our assets to GitHub we need to update our <code>.gitignore</code> file as well.
+                        (<a href="https://github.com/alexjustesen/lasso-ci-cd/blob/develop/.gitignore" target="_blank" rel="noopener">Sample</a>)
+                    </p>
 
                     <ul>
                         <li>Add Lasso's temp directory <code>.lasso</code>.</li>
-                        <li>Add our public asset directories and files.
+                        <li>Add our public asset directories and any additional files.
                             <ul>
                                 <li><code>/public/css/*</code></li>
                                 <li><code>/public/img/*</code></li>
                                 <li><code>/public/js/*</code></li>
+                                <li><code>/public/favicon.ico</code></li>
+                                <li><code>/public/mix-manifest.json</code></li>
                             </ul>
                         </li>
-                        <li>In this case we need to also include the mix manifest <code>/public/mix-manifest.json</code></li>
                     </ul>
 
                     <h2 id="github-actions">GitHub Actions</h2>
                     <p>
                         To get us started we're going to create and run two workflows, one to do our testing (CI) and one to do our deploying (CD).
-                        These workflows are based on the <a href="https://github.com/actions/starter-workflows/blob/48d91f58fdbd01a65b0e1e4dcc0eda76d3540536/ci/laravel.yml" target="_blank" rel="noopener">Laravel</a> actions starter workflows.
                     </p>
 
-                    <h3>Continuous Improvement Workflow</h3>
+                    <h3>Continuous Improvement Workflow (Test)</h3>
                     <p>
-                        The goal of this workflow is to run when a pull request is created to run tests only.
+                        The goal of this workflow is to run our builds and tests when a PR is opened and when any changes are made to code where a PR is already open.
                     </p>
 
                     <h4>Workflow Additions</h4>
@@ -195,7 +194,7 @@
                         </p>
                     </blockquote>
 
-                    <h3>Continuous Deployment Workflow</h3>
+                    <h3>Continuous Deployment Workflow (Deploy)</h3>
                     <p>
                         The goal of this workflow is to run when a pull request is merged into develop, run tests, compile and upload assets and deploy the code.
                     </p>
