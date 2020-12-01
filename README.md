@@ -4,6 +4,8 @@ Lasso CI/CD is the repository that goes along with my guide [Laravel CI/CD Pipel
 
 This guide will walk you though how I use GitHub Actions to create a CI/CD pipeline for [Laravel](https://laravel.com) applications. We'll use [Lasso](https://getlasso.dev) from [Sam Carré](https://github.com/Sammyjo20) to compile Webpack assets and upload them to a S3 storage provider and then trigger a deployment using the workflow.
 
+[![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/S6S12TS60)
+
 ## Installation
 
 The repository is meant to be a starting point and a reference for your application. Fork it, clone it and use it however you'd like to fit your process.
