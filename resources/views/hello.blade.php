@@ -282,35 +282,59 @@
                     <h3>Bonus</h3>
                     <p>
                         I use <a href="https://ploi.io/register?referrer=Q6l9H3OiyYW58yEcwjy8">Ploi.io</a> <em>(referral link)</em> to host my Laravel applications.
-                        Check out Ploi's docs to see how you can trigger a deployment and reference the step called <code>Trigger ploi.io deployment</code> in <code>.github/workflows/deploy.yml</code>.
+                    </p>
+
+                    <p>
+                        Check out Ploi's docs to see how you can trigger a deployment and reference the steps called <code>Trigger 'develop' branch ploi.io deployment</code> and
+                        <code>Trigger 'main' branch ploi.io deployment</code> in <a href="https://github.com/alexjustesen/lasso-ci-cd/blob/develop/.github/workflows/deploy.yml" target="_blank" rel="noopener">deploy.yml</a>
+                        to deploy different branches to different environments.
                     </p>
 
                     <blockquote>
-                        <p>You can also do this in Laravel Forge as well as other platforms.</p>
+                        <p>You can also do this in Laravel Forge as well as other hosting platforms.</p>
                     </blockquote>
 
                     <p>
-                        To trigger a deployment in Ploi you need to send a <code>POST</code> request to a webhook URL. You'll notice for this project I trigger a deployment from our workflow utilizing an additional secret.
+                        To trigger a deployment in Ploi you need to send a <code>POST</code> request to a webhook with a token. You'll notice for this project I trigger a deployment from our workflow utilizing additional secrets.
+                    </p>
+
+                    <p>
+                        The token and webhook url can be found on your site's repository settings in the Ploi.io panel.
                     </p>
 
                     <table>
                         <thead>
                             <tr>
                                 <th>Name</th>
-                                <th>Value</th>
+                                <th>Branch/Environment</th>
                             </tr>
                         </thead>
 
                         <tbody>
                             <tr>
-                                <td>PLOI_DEPLOYMENT_WEBHOOK</td>
-                                <td>The webhook URL can be found in your site's repository settings in the Ploi panel.</td>
+                                <td>PLOI_DEVELOP_TOKEN</td>
+                                <td>develop/preview</td>
+                            </tr>
+
+                            <tr>
+                                <td>PLOI_DEVELOP_WEBHOOK</td>
+                                <td>develop/preview</td>
+                            </tr>
+
+                            <tr>
+                                <td>PLOI_MAIN_TOKEN</td>
+                                <td>main/production</td>
+                            </tr>
+
+                            <tr>
+                                <td>PLOI_MAIN_WEBHOOK</td>
+                                <td>main/production</td>
                             </tr>
                         </tbody>
                     </table>
 
                     <p>
-                        Now when your CD workflow runs successfully it will trigger a deployment automatically on Ploi.
+                        The result of this pattern allows me to deploy code from my <code>develop</code> branch to my <code>preview</code> domain/environment and code from my <code>main</code> branch to my <code>production</code> domain/environment.
                     </p>
 
                     <h2 id="disclaimer">Disclaimer</h2>
