@@ -1,6 +1,6 @@
 # Lasso CI/CD
 
-Lasso CI/CD is the repository that goes along with my guide [Laravel CI/CD Pipeline with GitHub Actions and Lasso](https://lasso-ci-cd.alexjustesen.com/). This repo contains all the code referenced in the guide.
+Lasso CI/CD is the repo that goes along with my guide [Laravel CI/CD Pipeline with Lasso and GitHub Actions](https://lasso-ci-cd.alexjustesen.com/). This repo contains all the code referenced in the guide.
 
 This guide will walk you though how I use GitHub Actions to create a CI/CD pipeline for [Laravel](https://laravel.com) applications. We'll use [Lasso](https://getlasso.dev) from [Sam Carré](https://github.com/Sammyjo20) to compile Webpack assets and upload them to a S3 storage provider and then trigger a deployment using the workflow.
 
