@@ -1,4 +1,5 @@
 const defaultTheme = require('tailwindcss/defaultTheme');
+const colors = require('tailwindcss/colors');
 
 module.exports = {
     purge: [
@@ -8,6 +9,10 @@ module.exports = {
 
     theme: {
         extend: {
+            colors: {
+                emerald: colors.emerald,
+            },
+
             fontFamily: {
                 sans: ['Work Sans', ...defaultTheme.fontFamily.sans],
             },
@@ -22,7 +27,7 @@ module.exports = {
                         },
 
                         h3: {
-                            fontWeight: '500'
+                            fontWeight: '500',
                         }
                     }
                 }

@@ -1,50 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+<x-app-layout>
+    <div class="max-w-4xl mx-auto my-4 space-y-4 sm:my-6 lg:my-8 sm:space-y-6 lg:space-y-8">
+        <x-card>
+            <x-navigation />
 
-    <link rel="shortcut icon" href="{{ mix('img/refresh-cw.svg') }}" type="image/svg">
-
-    <link rel="icon" type="image/svg+xml" href="{{ mix('img/refresh-cw.svg') }}">
-    <link rel="alternate icon" href="/favicon.ico">
-
-    {{-- Site title and description --}}
-    <title>{{ config('app.name') }}</title>
-    <meta name="description" content="Laravel CI/CD pipeline with Lasso and GitHub actions.">
-
-    {{-- Fonts --}}
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
-
-    {{-- Styles --}}
-    <link rel="stylesheet" href="{{ mix('css/app.css') }}">
-
-    <!-- Matomo -->
-    <script type="text/javascript">
-        var _paq = window._paq = window._paq || [];
-        /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
-        _paq.push(['trackPageView']);
-        _paq.push(['enableLinkTracking']);
-        (function() {
-            var u="//analytics.alexjustesen.com/";
-            _paq.push(['setTrackerUrl', u+'matomo.php']);
-            _paq.push(['setSiteId', '1']);
-            var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-            g.type='text/javascript'; g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
-        })();
-    </script>
-    <!-- End Matomo Code -->
-</head>
-
-<body class="antialiased bg-gray-800">
-    <div class="flex flex-col min-h-screen py-6">
-        <div class="relative max-w-4xl mx-auto bg-white">
-            <x-header />
-
-            <div class="p-4 pt-12 sm:p-6 lg:p-8">
-                <article class="prose-sm prose max-w-none lg:prose-xl">
+            <div class="pt-4 sm:pt-6 lg:pt-8">
+                <article class="prose max-w-none lg:prose-xl">
                     <h1 id="home">Laravel CI/CD Pipeline with Lasso and GitHub Actions</h1>
 
                     <div class="flex items-center space-x-4">
@@ -336,40 +296,42 @@
                     <p>
                         The result of this pattern allows me to deploy code from my <code>develop</code> branch to my <code>preview</code> domain/environment and code from my <code>main</code> branch to my <code>production</code> domain/environment.
                     </p>
-
-                    <h2 id="disclaimer">Disclaimer</h2>
-                    <p>
-                        CI/CD pipelines have many forms, each is specific to the needs of the project and <strong>should evolve over time</strong>.
-                        This is just one way of doing it, find the process that works for you.
-                    </p>
-
-                    <h2 id="about-me">About me</h2>
-                    <p>
-                        I'm Alex, I've done some form of web development for the better part of 15 years. I currently work for <a href="https://massmutual.com" target="_blank" rel="noopener">MassMutual</a> doing operational
-                        data architecture and web development for our insurance business lines.
-                    </p>
-
-                    <p>
-                        I also do a bit of feelance work to pay for 🍺 and 🚗.
-                    </p>
-
-                    <p>You can get ahold of me through the methods below.</p>
-
-                    <ul>
-                        <li><a href="https://github.com/alexjustesen" target="_blank" rel="noopener">GitHub</a></li>
-                        <li><a href="https://twitter.com/alexjustesen" target="_blank" rel="noopener">Twitter</a></li>
-                        <li><a href="https://www.linkedin.com/in/alexander-justesen/" target="_blank" rel="noopener">LinkedIn</a></li>
-                    </ul>
                 </article>
-
-                <div class="mt-8 text-sm text-gray-700">
-                    This was last updated on {{ \Carbon\Carbon::parse(\App\Application::DATE)->format('F jS, Y') }} as v{{ \App\Application::VERSION }}.
-                </div>
             </div>
-        </div>
-    </div>
+        </x-card>
 
-    <!-- Scripts -->
-    <script src="{{ mix('js/app.js') }}"></script>
-</body>
-</html>
+        <x-card>
+            <div class="prose-sm prose max-w-none lg:prose-xl">
+                <h2 id="disclaimer">Disclaimer</h2>
+                <p>
+                    CI/CD pipelines have many forms, each is specific to the needs of the project and <strong>should evolve over time</strong>.
+                    This is just one way of doing it, find the process that works for you.
+                </p>
+            </div>
+        </x-card>
+
+        <x-card>
+            <div class="prose-sm prose max-w-none lg:prose-xl">
+                <h2 id="about-me">About me</h2>
+                <p>
+                    I'm Alex, I've done some form of web development for the better part of 15 years. I currently work for <a href="https://massmutual.com" target="_blank" rel="noopener">MassMutual</a> doing operational
+                    data architecture and web development for our insurance business lines.
+                </p>
+
+                <p>
+                    I also do a bit of feelance work to pay for 🍺 and 🚗.
+                </p>
+
+                <p>You can get ahold of me through the methods below.</p>
+
+                <ul>
+                    <li><a href="https://github.com/alexjustesen" target="_blank" rel="noopener">GitHub</a></li>
+                    <li><a href="https://twitter.com/alexjustesen" target="_blank" rel="noopener">Twitter</a></li>
+                    <li><a href="https://www.linkedin.com/in/alexander-justesen/" target="_blank" rel="noopener">LinkedIn</a></li>
+                </ul>
+            </div>
+        </x-card>
+
+        <x-footer />
+    </div>
+</x-app-layout>
