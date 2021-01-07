@@ -14,8 +14,11 @@
     <title>{{ config('app.name') }}</title>
     <meta name="description" content="Laravel CI/CD pipeline with Lasso and GitHub actions.">
 
-    {{-- Stylesheets --}}
-    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    {{-- Fonts --}}
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+    {{-- Styles --}}
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 
     <!-- Matomo -->
@@ -36,17 +39,17 @@
 </head>
 
 <body class="antialiased bg-gray-800">
-    <div class="min-h-screen flex flex-col py-6">
+    <div class="flex flex-col min-h-screen py-6">
         <div class="relative max-w-4xl mx-auto bg-white">
             <x-header />
 
             <div class="p-4 pt-12 sm:p-6 lg:p-8">
-                <article class="prose prose-sm max-w-none lg:prose-xl">
+                <article class="prose-sm prose max-w-none lg:prose-xl">
                     <h1 id="home">Laravel CI/CD Pipeline with GitHub Actions and Lasso</h1>
 
                     <div class="flex items-center space-x-4">
                         <a href="https://ko-fi.com/S6S12TS60" target="_blank" rel="noopener">
-                            <img src="https://cdn.ko-fi.com/cdn/kofi3.png?v=2" class="border-none h-8" style="margin: 0;" alt="Buy Me a Coffee at ko-fi.com">
+                            <img src="https://cdn.ko-fi.com/cdn/kofi3.png?v=2" class="h-8 border-none" style="margin: 0;" alt="Buy Me a Coffee at ko-fi.com">
                         </a>
                     </div>
 
