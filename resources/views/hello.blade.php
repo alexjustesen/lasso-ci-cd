@@ -363,7 +363,7 @@
                 </article>
 
                 <div class="mt-8 text-sm text-gray-700">
-                    This was last updated on {{ \App\Application::DATE }} as v{{ \App\Application::VERSION }}.
+                    This was last updated on {{ \Carbon\Carbon::parse(\App\Application::DATE)->format('F jS, Y') }} as v{{ \App\Application::VERSION }}.
                 </div>
             </div>
         </div>
