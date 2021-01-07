@@ -14,12 +14,12 @@ mix.disableNotifications();
  */
 
 mix.js('resources/js/app.js', 'public/js')
-    .extract(['alpinejs'])
     .postCss('resources/css/app.css', 'public/css', [
         require('postcss-import'),
         require('tailwindcss'),
+        require('autoprefixer'),
     ])
-    .copy('resources/img/**/*', 'public/img');
+    .copyDirectory('./resources/img', './public/img');
 
 if ( mix.inProduction() ) {
     mix.version();

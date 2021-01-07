@@ -1,37 +1,44 @@
 const defaultTheme = require('tailwindcss/defaultTheme');
+const colors = require('tailwindcss/colors');
 
 module.exports = {
-    future: {
-        removeDeprecatedGapUtilities: true,
-        purgeLayersByDefault: true,
-        defaultLineHeights: true,
-        standardFontWeights: true
-    },
     purge: [
         './storage/framework/views/*.php',
         './resources/views/**/*.blade.php'
     ],
+
     theme: {
         extend: {
+            colors: {
+                emerald: colors.emerald,
+            },
+
             fontFamily: {
                 sans: ['Work Sans', ...defaultTheme.fontFamily.sans],
-            }
-        },
-        typography: {
-            default: {
-                css: {
-                    fontFamily: 'Work Sans',
-                    h2: {
-                        fontWeight: '600',
-                    },
-                    h3: {
-                        fontWeight: '500'
+            },
+
+            typography: {
+                DEFAULT: {
+                    css: {
+                        fontFamily: 'Work Sans',
+
+                        h2: {
+                            fontWeight: '600',
+                        },
+
+                        h3: {
+                            fontWeight: '500',
+                        }
                     }
                 }
             }
         }
     },
-    variants: {},
+
+    variants: {
+        //
+    },
+
     plugins: [
         require('@tailwindcss/typography')
     ]
