@@ -1,0 +1,93 @@
+name: Deploy build
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ develop, main ]
+
+jobs:
+  deploy-app:
+    if: "! contains(github.event.head_commit.message, '[wip]')"
+    name: Deploy Laravel (PHP ${{ matrix.php-versions }} on ${{ matrix.operating-system }})
+    runs-on: ${{ matrix.operating-system }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        operating-system: [ubuntu-20.04]
+        php-versions: ['7.4']
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Get npm cache directory
+        id: npm-cache
+        run: echo "::set-output name=dir::$(npm config get cache)"
+
+      - name: Cache npm dependencies
+        uses: actions/cache@v2
+        with:
+          path: ${{ steps.npm-cache.outputs.dir }}
+          # Use package.json for key, if package-lock.json is not committed.
+          # key: ${{ runner.os }}-node-${{ hashFiles('**/package.json') }}
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: NPM install
+        run: npm install
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-versions }}
+          extensions: mbstring, dom, fileinfo
+          # optional
+          coverage: xdebug
+
+      - name: Get composer cache directory
+        id: composer-cache
+        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+
+      - name: Cache composer dependencies
+        uses: actions/cache@v2
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          # Use composer.json for key, if composer.lock is not committed.
+          # key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.json') }}
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-composer-
+
+      - name: Composer install
+        run: composer install --no-progress --prefer-dist --optimize-autoloader
+
+      - name: Prepare the application
+        run: |
+          php -r "file_exists('.env') || copy('.env.example', '.env');"
+          php artisan key:generate
+      - name: Clear config
+        run: php artisan config:clear
+
+      - name: Extract branch name
+        shell: bash
+        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+        id: extract_branch
+
+      - name: Publish assets with Lasso
+        run: php artisan lasso:publish --no-git
+        env:
+          LASSO_ENV: ${{ steps.extract_branch.outputs.branch }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
+          AWS_BUCKET: ${{ secrets.AWS_BUCKET }}
+          AWS_ENDPOINT: ${{ secrets.AWS_ENDPOINT }}
+
+      - name: Trigger 'develop' branch ploi.io deployment
+        if: ${{ steps.extract_branch.outputs.branch == 'develop' }}
+        run: curl -X POST ${{ secrets.PLOI_DEVELOP_WEBHOOK }}?token=${{ secrets.PLOI_DEVELOP_TOKEN }}
+
+      - name: Trigger 'main' branch ploi.io deployment
+        if: ${{ steps.extract_branch.outputs.branch == 'main' }}
+        run: curl -X POST ${{ secrets.PLOI_MAIN_WEBHOOK }}?token=${{ secrets.PLOI_MAIN_TOKEN }}
