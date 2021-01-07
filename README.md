@@ -15,5 +15,13 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 
 Please make sure to update tests as appropriate.
 
+## Open Source
+This project utilizes open source projects.
+
+- [Laravel](https://laravel.com/)
+- [Lasso](https://getlasso.dev/)
+- [Tailwindcss](https://tailwindcss.com/)
+- [AlpineJS](https://github.com/alpinejs/alpine/)
+
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
