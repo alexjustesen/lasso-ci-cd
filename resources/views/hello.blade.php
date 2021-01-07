@@ -89,9 +89,6 @@
                         </li>
                         <li>
                             You compile your assets using <a href="https://laravel.com/docs/8.x/mix#introduction" target="_blank" rel="noopener">Laravel Mix</a> and they get published into the default <code>/public</code> directory.
-                            <ul>
-                                <li>For this example I'm using <a href="https://tailwind.css" target="_blank" rel="noopener">Tailwind CSS</a> and <a href="https://github.com/alpinejs/alpine/" target="_blank" rel="noopener">AlpineJS</a>.</li>
-                            </ul>
                         </li>
                     </ul>
 
@@ -144,7 +141,7 @@
 
                     <h3>Configuring Lasso</h3>
                     <p>
-                        Next let's get Lasso configured, for a full explaination of the settings go to the <a href="https://github.com/Sammyjo20/Lasso#configuration" target="_blank" rel="noopener">readme</a> .
+                        Next let's get Lasso configured, for a full explaination of the settings go to the Lasso <a href="https://github.com/Sammyjo20/Lasso#configuration" target="_blank" rel="noopener">readme</a>.
                     </p>
 
                     <ol>
@@ -159,12 +156,11 @@
                     <h3>Configure .gitignore</h3>
                     <p>
                         Since the whole point of this is to automate our deployments and no longer commit our assets to GitHub we need to update our <code>.gitignore</code> file as well.
-                        (<a href="https://github.com/alexjustesen/lasso-ci-cd/blob/develop/.gitignore" target="_blank" rel="noopener">Sample</a>)
                     </p>
 
                     <ul>
                         <li>Add Lasso's temp directory <code>.lasso</code>.</li>
-                        <li>Add our public asset directories and any additional files.
+                        <li>Add our public asset directories and any additional directories and files.
                             <ul>
                                 <li><code>/public/css/*</code></li>
                                 <li><code>/public/img/*</code></li>
@@ -182,7 +178,7 @@
 
                     <h3>Continuous Improvement Workflow (Test)</h3>
                     <p>
-                        The goal of this workflow is to run our builds and tests when a PR is opened and when any changes are made to code where a PR is already open.
+                        The goal of this workflow is to run our build and tests when a PR is opened and when any changes are made to code where a PR is already open.
                     </p>
 
                     <h4>Workflow Additions</h4>
@@ -193,14 +189,20 @@
 
                     <blockquote>
                         <p>
-                            The workflow can be found in <a href="https://github.com/alexjustesen/lasso-ci-cd/blob/develop/.github/workflows/laravel-ci.yml" target="_blank" rel="noopener">laravel-ci.yml</a>.
+                            This workflow can be found here: <a href="https://github.com/alexjustesen/lasso-ci-cd/blob/develop/.github/workflows/test.yml" target="_blank" rel="noopener">test.yml</a>.
                         </p>
                     </blockquote>
 
                     <h3>Continuous Deployment Workflow (Deploy)</h3>
                     <p>
-                        The goal of this workflow is to run when a pull request is merged into develop, run tests, compile and upload assets and deploy the code.
+                        The goal of this workflow is to run when a PR is merged into develop or mail, run our tests, compile and upload assets with Lasso and finally deploy the code.
                     </p>
+
+                    <blockquote>
+                        <p>
+                            This workflow can be found here: <a href="https://github.com/alexjustesen/lasso-ci-cd/blob/develop/.github/workflows/deploy.yml" target="_blank" rel="noopener">deploy.yml</a>.
+                        </p>
+                    </blockquote>
 
                     <h4>Using Secrets</h4>
                     <blockquote>
@@ -250,7 +252,7 @@
                     </table>
 
                     <blockquote>
-                        <p>Note: I use Backblaze's B2 service because it's cheaper than AWS.</p>
+                        <p>Note: You can use any s3 compliant API service, I use Backblaze's B2 service because it's cheaper than AWS.</p>
                     </blockquote>
 
                     <p>
@@ -262,16 +264,13 @@
                         it <code>Publish assets with Lasso</code>.
                     </p>
 
-                    <blockquote>
-                        <p>
-                            The workflow can be found in <a href="https://github.com/alexjustesen/lasso-ci-cd/blob/develop/.github/workflows/laravel-cd.yml" target="_blank" rel="noopener">laravel-cd.yml</a>.
-                        </p>
-                    </blockquote>
-
                     <h2 id="deployment">Deployment</h2>
 
                     <p>
                         Lastly you need to add <code>php artisan lasso:pull</code> to your deployment script, I suggest doing this prior to clearing or filling any caches.
+                    </p>
+
+                    <p>
                         Almost forgot, don't forget to update your S3 variables in your <code>.env</code> file.
                     </p>
 
@@ -283,7 +282,7 @@
                     <h3>Bonus</h3>
                     <p>
                         I use <a href="https://ploi.io/register?referrer=Q6l9H3OiyYW58yEcwjy8">Ploi.io</a> <em>(referral link)</em> to host my Laravel applications.
-                        Check out Ploi's docs to see how you can trigger a deployment and reference the step called <code>Trigger ploi.io deployment</code> in <code>.github/workflows/laravel-cd.yml</code>.
+                        Check out Ploi's docs to see how you can trigger a deployment and reference the step called <code>Trigger ploi.io deployment</code> in <code>.github/workflows/deploy.yml</code>.
                     </p>
 
                     <blockquote>
