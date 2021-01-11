@@ -272,18 +272,8 @@
 
                         <tbody>
                             <tr>
-                                <td>PLOI_DEVELOP_TOKEN</td>
-                                <td>develop/preview</td>
-                            </tr>
-
-                            <tr>
                                 <td>PLOI_DEVELOP_WEBHOOK</td>
                                 <td>develop/preview</td>
-                            </tr>
-
-                            <tr>
-                                <td>PLOI_MAIN_TOKEN</td>
-                                <td>main/production</td>
                             </tr>
 
                             <tr>

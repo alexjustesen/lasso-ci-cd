@@ -86,8 +86,8 @@ jobs:
 
       - name: Trigger 'develop' branch ploi.io deployment
         if: ${{ steps.extract_branch.outputs.branch == 'develop' }}
-        run: curl -X POST ${{ secrets.PLOI_DEVELOP_WEBHOOK }}?token=${{ secrets.PLOI_DEVELOP_TOKEN }}
+        run: curl -X POST ${{ secrets.PLOI_DEVELOP_WEBHOOK }}
 
       - name: Trigger 'main' branch ploi.io deployment
         if: ${{ steps.extract_branch.outputs.branch == 'main' }}
-        run: curl -X POST ${{ secrets.PLOI_MAIN_WEBHOOK }}?token=${{ secrets.PLOI_MAIN_TOKEN }}
+        run: curl -X POST ${{ secrets.PLOI_MAIN_WEBHOOK }}
