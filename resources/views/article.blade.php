@@ -259,7 +259,7 @@
                     </p>
 
                     <p>
-                        The token and webhook url can be found on your site's repository settings in the Ploi.io panel.
+                        The webhook url can be found on your site's repository settings in the Ploi.io panel.
                     </p>
 
                     <table>
@@ -272,18 +272,8 @@
 
                         <tbody>
                             <tr>
-                                <td>PLOI_DEVELOP_TOKEN</td>
-                                <td>develop/preview</td>
-                            </tr>
-
-                            <tr>
                                 <td>PLOI_DEVELOP_WEBHOOK</td>
                                 <td>develop/preview</td>
-                            </tr>
-
-                            <tr>
-                                <td>PLOI_MAIN_TOKEN</td>
-                                <td>main/production</td>
                             </tr>
 
                             <tr>
@@ -294,7 +284,7 @@
                     </table>
 
                     <p>
-                        The result of this pattern allows me to deploy code from my <code>develop</code> branch to my <code>preview</code> domain/environment and code from my <code>main</code> branch to my <code>production</code> domain/environment.
+                        This pattern allows me to deploy code from my <code>develop</code> branch to my <code>preview</code> environment and code from my <code>main</code> branch to my <code>production</code> environment.
                     </p>
                 </article>
             </div>
