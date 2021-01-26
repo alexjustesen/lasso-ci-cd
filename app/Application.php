@@ -8,12 +8,12 @@ class Application {
      *
      * @var string
      */
-    const VERSION = '0.3.0';
+    const VERSION = '0.4.0';
 
     /**
      * The application build date.
      *
      * @string
      */
-    const DATE = '2021-01-07';
+    const DATE = '2021-01-26';
 }
