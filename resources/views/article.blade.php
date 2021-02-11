@@ -241,25 +241,14 @@
 
                     <h3>Bonus</h3>
                     <p>
-                        I use <a href="https://ploi.io/register?referrer=Q6l9H3OiyYW58yEcwjy8">Ploi.io</a> <em>(referral link)</em> to host my Laravel applications.
+                        I use <a href="https://ploi.io/register?referrer=Q6l9H3OiyYW58yEcwjy8" rel="nofollow" target="_blank">Ploi.io</a> <em>(referral link)</em> and
+                        <a href="Https://forge.laravel.com" rel="nofollow" target="_blank">Forge</a> to host my Laravel applications.
                     </p>
 
                     <p>
-                        Check out Ploi's docs to see how you can trigger a deployment and reference the steps called <code>Trigger 'develop' branch ploi.io deployment</code> and
-                        <code>Trigger 'main' branch ploi.io deployment</code> in <a href="https://github.com/alexjustesen/lasso-ci-cd/blob/develop/.github/workflows/deploy.yml" target="_blank" rel="noopener">deploy.yml</a>
-                        to deploy different branches to different environments.
-                    </p>
-
-                    <blockquote>
-                        <p>You can also do this in Laravel Forge as well as other hosting platforms.</p>
-                    </blockquote>
-
-                    <p>
-                        To trigger a deployment in Ploi you need to send a <code>POST</code> request to a webhook with a token. You'll notice for this project I trigger a deployment from our workflow utilizing additional secrets.
-                    </p>
-
-                    <p>
-                        The webhook url can be found on your site's repository settings in the Ploi.io panel.
+                        The steps called <code>Trigger develop deployment</code> and
+                        <code>Trigger production deployment</code> in <a href="https://github.com/alexjustesen/lasso-ci-cd/blob/develop/.github/workflows/deploy.yml" target="_blank" rel="noopener">deploy.yml</a>
+                        deploy to different environments based on branch name.
                     </p>
 
                     <table>
@@ -272,12 +261,12 @@
 
                         <tbody>
                             <tr>
-                                <td>PLOI_DEVELOP_WEBHOOK</td>
-                                <td>develop/preview</td>
+                                <td>DEVELOP_WEBHOOK</td>
+                                <td>develop/develop</td>
                             </tr>
 
                             <tr>
-                                <td>PLOI_MAIN_WEBHOOK</td>
+                                <td>PROD_WEBHOOK</td>
                                 <td>main/production</td>
                             </tr>
                         </tbody>
