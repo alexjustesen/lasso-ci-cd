@@ -18,10 +18,6 @@
 
         {{-- Styles --}}
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
-
-        @if (config('app.env') == 'production')
-            <x-matomo-analytics />
-        @endif
     </head>
 
     <body class="font-sans antialiased bg-gray-800">
