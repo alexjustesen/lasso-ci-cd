@@ -84,7 +84,7 @@
                     </p>
 
                     <ul>
-                        <li>Require Amazon S3 <code>league/flysystem-aws-s3-v3</code>.</li>
+                        <li>Require Amazon S3 <code>composer require league/flysystem-aws-s3-v3</code>.</li>
                         <li>Require Lasso <code>composer require sammyjo20/lasso</code>.</li>
                     </ul>
 
