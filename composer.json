@@ -9,14 +9,14 @@
     "license": "MIT",
     "require": {
         "php": "^7.3|^8.0",
-        "brunocfalcao/blade-feather-icons": "^0.2.0",
+        "brunocfalcao/blade-feather-icons": "^2.0",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^8.12",
         "laravel/tinker": "^2.5",
         "league/flysystem-aws-s3-v3": "^1.0",
-        "sammyjo20/lasso": "^1.2"
+        "sammyjo20/lasso": "^1.2.8"
     },
     "require-dev": {
         "facade/ignition": "^2.3.6",
