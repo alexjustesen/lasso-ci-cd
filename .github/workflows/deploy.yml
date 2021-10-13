@@ -3,7 +3,7 @@ name: Deploy build
 on:
   workflow_dispatch:
   push:
-    branches: [ develop, main ]
+    branches: [ main ]
 
 jobs:
   deploy-app:
@@ -84,9 +84,13 @@ jobs:
           AWS_BUCKET: ${{ secrets.AWS_BUCKET }}
           AWS_ENDPOINT: ${{ secrets.AWS_ENDPOINT }}
 
-      - name: Trigger develop deployment
-        if: ${{ steps.extract_branch.outputs.branch == 'develop' }}
-        run: curl -X POST ${{ secrets.DEVELOP_WEBHOOK }}
+      # You can add additional branches to trigger deployments here.
+      # Just make sure to add the branch name to on.push.branches trigger at the top.
+
+      # Example for 'develop' branch
+      # - name: Trigger develop deployment
+      #   if: ${{ steps.extract_branch.outputs.branch == 'develop' }}
+      #   run: curl -X POST ${{ secrets.DEVELOP_WEBHOOK }}
 
       - name: Trigger production deployment
         if: ${{ steps.extract_branch.outputs.branch == 'main' }}
