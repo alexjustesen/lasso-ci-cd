@@ -7,12 +7,6 @@
                 <article class="prose max-w-none lg:prose-xl">
                     <h1 id="home">Laravel CI/CD Pipeline with Lasso and GitHub Actions</h1>
 
-                    <div class="flex items-center space-x-4">
-                        <a href="https://ko-fi.com/S6S12TS60" target="_blank" rel="noopener">
-                            <img src="https://cdn.ko-fi.com/cdn/kofi3.png?v=2" class="h-8 border-none" style="margin: 0;" alt="Buy Me a Coffee at ko-fi.com">
-                        </a>
-                    </div>
-
                     <p>
                         This guide will walk you though how I use GitHub Actions to create a CI/CD pipeline for <a href="https://laravel.com" target="_blank" rel="noopener">Laravel</a> applications. We'll use
                         <a href="https://getlasso.dev" target="_blank" rel="noopener">Lasso</a> from <a href="https://github.com/Sammyjo20" target="_blank" rel="noopener">Sam Carré</a> to compile Webpack
